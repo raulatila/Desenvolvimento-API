@@ -37,7 +37,7 @@ Contract.init({
     allowNull: false,
   },
 }, {
-  sequelize,  // Certifique-se de que o Sequelize está sendo passado corretamente aqui
+  sequelize,
   tableName: 'contracts',
   timestamps: false,
 });

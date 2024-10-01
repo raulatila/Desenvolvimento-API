@@ -55,7 +55,6 @@ export const updateDeposit = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { clientId, depositValue, operationDate } = req.body;
 
-  // Adiciona logs para depuração
   console.log(`Atualizando depósito com ID: ${id}`);
   console.log(`Dados recebidos:`, req.body);
 
@@ -77,3 +76,20 @@ export const updateDeposit = async (req: Request, res: Response) => {
   }
 };
 
+// Função para excluir um depósito pelo ID
+export const deleteDeposit = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const deposit = await Deposit.findByPk(id);
+    if (!deposit) {
+      return res.status(404).json({ message: 'Depósito não encontrado.' });
+    }
+
+    await deposit.destroy();
+    return res.status(204).send(); // No content
+  } catch (error: any) {
+    console.error("Erro ao excluir depósito:", error);
+    return res.status(500).json({ message: 'Erro ao excluir depósito.', error: error.message });
+  }
+};

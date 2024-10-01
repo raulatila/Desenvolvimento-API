@@ -1,4 +1,3 @@
-// deposit.model.ts
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database'; // Ajuste o caminho se necessário
 

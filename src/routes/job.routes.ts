@@ -16,4 +16,3 @@ router.get('/contract/:contractId', getJobsByContractId);
 router.get('/unpaid/sum', unpaidJobsSum);
 
 export default router;
-

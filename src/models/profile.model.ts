@@ -3,8 +3,11 @@ import sequelize from '../database';
 
 class Profile extends Model {
   public id!: number;
-  public name!: string;
+  public firstname!: string;
+  public lastname!: string;
+  public profession!: string;
   public balance!: number;
+  public status!: string;
 }
 
 Profile.init({
@@ -13,13 +16,25 @@ Profile.init({
     autoIncrement: true,
     primaryKey: true,
   },
-  name: {
+  firstname: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  balance: {
-    type: DataTypes.FLOAT,
+  lastname: {
+    type: DataTypes.STRING,
     allowNull: false,
+  },
+  profession: {
+    type: DataTypes.STRING,
+    allowNull: true, // Pode ser nulo se não for obrigatório
+  },
+  balance: {
+    type: DataTypes.DOUBLE,
+    allowNull: false,
+  },
+  status: {
+    type: DataTypes.STRING,
+    allowNull: true, // Pode ser nulo se não for obrigatório
   },
 }, {
   sequelize,

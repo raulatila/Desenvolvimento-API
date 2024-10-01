@@ -1,6 +1,5 @@
-// deposit.routes.ts
 import { Router } from 'express';
-import { createDeposit, findAllDeposits, findDepositById, updateDeposit } from '../controllers/deposit.controller';
+import { createDeposit, findAllDeposits, findDepositById, updateDeposit, deleteDeposit } from '../controllers/deposit.controller';
 
 const router = Router();
 
@@ -16,5 +15,7 @@ router.get('/:id', findDepositById);
 // Rota para atualizar um depósito pelo ID
 router.put('/:id', updateDeposit);
 
-export default router;
+// Rota para excluir um depósito pelo ID
+router.delete('/:id', deleteDeposit);
 
+export default router;

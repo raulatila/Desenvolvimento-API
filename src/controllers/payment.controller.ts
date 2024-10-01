@@ -51,3 +51,18 @@ export const getAllPayments = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Erro ao obter pagamentos.', error: error.message });
   }
 };
+
+// Função para calcular o total pago de um Job específico
+export const getTotalPaidByJobId = async (req: Request, res: Response) => {
+  const { jobId } = req.params;
+
+  try {
+    const payments = await Payment.findAll({ where: { jobId: parseInt(jobId, 10) } });
+    const totalPaid = payments.reduce((sum, payment) => sum + payment.paymentValue, 0);
+    
+    return res.status(200).json({ totalPaid });
+  } catch (error: any) {
+    console.error("Erro ao calcular o total pago:", error);
+    return res.status(500).json({ message: 'Erro ao calcular o total pago.', error: error.message });
+  }
+};

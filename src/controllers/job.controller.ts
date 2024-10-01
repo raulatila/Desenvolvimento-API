@@ -14,6 +14,7 @@ export const createJob = async (req: Request, res: Response) => {
     });
     res.status(201).json(newJob);
   } catch (error) {
+    console.error("Erro ao criar o Job:", error);
     res.status(500).json({ message: 'Erro ao criar o Job.', error });
   }
 };
@@ -24,6 +25,7 @@ export const getAllJobs = async (req: Request, res: Response) => {
     const jobs = await Job.findAll();
     res.status(200).json(jobs);
   } catch (error) {
+    console.error("Erro ao buscar os Jobs:", error);
     res.status(500).json({ message: 'Erro ao buscar os Jobs.', error });
   }
 };
@@ -36,20 +38,32 @@ export const getJobsByContractId = async (req: Request, res: Response) => {
     const jobs = await Job.findAll({ where: { contractId } });
     res.status(200).json(jobs);
   } catch (error) {
+    console.error("Erro ao buscar os Jobs por Contract ID:", error);
     res.status(500).json({ message: 'Erro ao buscar os Jobs por Contract ID.', error });
   }
 };
 
-// 2. Retornar soma dos Jobs não pagos integralmente
+// Função para retornar a soma dos Jobs não pagos
 export const unpaidJobsSum = async (req: Request, res: Response) => {
-  const jobs = await Job.findAll({ where: { paid: false } });
-  const totalUnpaid = jobs.reduce((sum, job) => sum + job.price, 0);
-  return res.json({ totalUnpaid });
+  try {
+    const jobs = await Job.findAll({ where: { paid: false } });
+    const totalUnpaid = jobs.reduce((sum, job) => sum + job.price, 0);
+    return res.json({ totalUnpaid });
+  } catch (error) {
+    console.error("Erro ao calcular a soma dos Jobs não pagos:", error);
+    res.status(500).json({ message: 'Erro ao calcular a soma dos Jobs não pagos.', error });
+  }
 };
 
-// 4. Retornar todos os Jobs de um Contract
+// Função para obter todos os Jobs de um Contract
 export const getJobsByContract = async (req: Request, res: Response) => {
   const { contractId } = req.params;
-  const jobs = await Job.findAll({ where: { contractId } });
-  return res.json(jobs);
+
+  try {
+    const jobs = await Job.findAll({ where: { contractId } });
+    return res.json(jobs);
+  } catch (error) {
+    console.error("Erro ao buscar Jobs de um Contract:", error);
+    res.status(500).json({ message: 'Erro ao buscar Jobs de um Contract.', error });
+  }
 };
