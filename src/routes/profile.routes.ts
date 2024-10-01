@@ -1,13 +1,12 @@
-// routes/profile.routes.ts
 import { Router } from 'express';
-import { createProfile, getProfileBalance, getProfileById, updateProfile, deleteProfile } from '../controllers/profile.controller'; 
+import { createProfile, getProfileBalance, getProfileById, updateProfile, deleteProfile } from '../controllers/profile.controller';
 
 const router = Router();
 
-// Rota para criar um novo perfil (Profile)
+// Rota para criar um novo perfil
 router.post('/', createProfile);
 
-// Rota para verificar o saldo de um perfil (Profile)
+// Rota para verificar o saldo de um perfil
 router.get('/:profileId/balance', getProfileBalance);
 
 // Rota para obter um perfil por ID
