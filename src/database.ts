@@ -1,12 +1,13 @@
+// database/index.ts
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME || 'meu_banco', 
-  process.env.DB_USER || 'root', 
-  process.env.DB_PASS || '12012004', 
+  process.env.DB_NAME || 'meu_banco',
+  process.env.DB_USER || 'root',
+  process.env.DB_PASS || '12012004',
   {
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
@@ -14,6 +15,7 @@ const sequelize = new Sequelize(
   }
 );
 
+// Testando a conexão com o banco de dados
 sequelize.authenticate()
   .then(() => console.log('Conectado ao MySQL com sucesso!'))
   .catch(err => console.error('Erro ao conectar com MySQL:', err));

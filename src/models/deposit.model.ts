@@ -1,3 +1,4 @@
+// models/deposit.model.ts
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database'; // Ajuste o caminho se necessário
 
@@ -19,7 +20,7 @@ Deposit.init({
     allowNull: false,
   },
   depositValue: {
-    type: DataTypes.FLOAT, // Ou DECIMAL se preferir
+    type: DataTypes.DOUBLE, // Mude para FLOAT se preferir
     allowNull: false,
   },
   operationDate: {

@@ -1,12 +1,13 @@
+// controllers/profile.controller.ts
 import { Request, Response } from 'express';
 import Profile from '../models/profile.model'; // Certifique-se de que o caminho está correto
 
 // Função para criar um novo perfil (Profile)
 export const createProfile = async (req: Request, res: Response) => {
-  const { firstname, lastname, profession, balance, status } = req.body;
+  const { firstname, lastname, profession, balance } = req.body; // Removido 'type'
 
   try {
-    const newProfile = await Profile.create({ firstname, lastname, profession, balance, status });
+    const newProfile = await Profile.create({ firstname, lastname, profession, balance });
     res.status(201).json(newProfile);
   } catch (error) {
     res.status(500).json({ message: 'Erro ao criar o perfil.', error });
@@ -48,7 +49,7 @@ export const getProfileById = async (req: Request, res: Response) => {
 // Função para atualizar um perfil
 export const updateProfile = async (req: Request, res: Response) => {
   const { profileId } = req.params;
-  const { firstname, lastname, profession, balance, status } = req.body;
+  const { firstname, lastname, profession, balance } = req.body; // Removido 'type'
 
   try {
     const profile = await Profile.findByPk(profileId);
@@ -60,7 +61,6 @@ export const updateProfile = async (req: Request, res: Response) => {
     profile.lastname = lastname || profile.lastname;
     profile.profession = profession || profile.profession;
     profile.balance = balance !== undefined ? balance : profile.balance;
-    profile.status = status || profile.status;
 
     await profile.save();
     res.status(200).json(profile);

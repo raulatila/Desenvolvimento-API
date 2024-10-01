@@ -1,3 +1,4 @@
+// models/profile.model.ts
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database';
 
@@ -7,7 +8,7 @@ class Profile extends Model {
   public lastname!: string;
   public profession!: string;
   public balance!: number;
-  public status!: string;
+  public type!: string; // Alterado 'status' para 'type'
 }
 
 Profile.init({
@@ -26,20 +27,20 @@ Profile.init({
   },
   profession: {
     type: DataTypes.STRING,
-    allowNull: true, // Pode ser nulo se não for obrigatório
+    allowNull: true,
   },
   balance: {
     type: DataTypes.DOUBLE,
     allowNull: false,
   },
-  status: {
+  type: {
     type: DataTypes.STRING,
     allowNull: true, // Pode ser nulo se não for obrigatório
   },
 }, {
   sequelize,
   tableName: 'profiles',
-  timestamps: false,  // Desativa timestamps
+  timestamps: false,
 });
 
 export default Profile;

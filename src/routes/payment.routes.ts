@@ -1,23 +1,13 @@
 import { Router } from 'express';
-import {
-  createPayment,
-  getPaymentsByJobId,
-  getAllPayments,
-  getTotalPaidByJobId
-} from '../controllers/payment.controller'; 
+import { createPayment, getPaymentsByJobId, getAllPayments, getTotalPaidByJobId, calculateTotalToPay } from '../controllers/payment.controller'; 
 
 const router = Router();
 
-// Rota para criar um pagamento
-router.post('/:jobId', createPayment);
-
-// Rota para obter todos os pagamentos de um job específico
-router.get('/:jobId', getPaymentsByJobId);
-
-// Rota para obter o total pago de um job específico
-router.get('/:jobId/total', getTotalPaidByJobId); // Nova rota para total pago
-
-// Rota para obter todos os pagamentos
-router.get('/', getAllPayments); 
+// Defina as rotas
+router.post('/:jobId', createPayment); // Criar pagamento
+router.get('/:jobId', getPaymentsByJobId); // Obter pagamentos de um Job específico
+router.get('/', getAllPayments); // Obter todos os pagamentos
+router.get('/:jobId/total', getTotalPaidByJobId); // Obter total pago por Job
+router.get('/:jobId/calculate-total', calculateTotalToPay); // Calcular total a pagar
 
 export default router;

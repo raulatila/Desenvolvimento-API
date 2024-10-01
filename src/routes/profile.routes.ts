@@ -1,3 +1,4 @@
+// routes/profile.routes.ts
 import { Router } from 'express';
 import { createProfile, getProfileBalance, getProfileById, updateProfile, deleteProfile } from '../controllers/profile.controller'; 
 

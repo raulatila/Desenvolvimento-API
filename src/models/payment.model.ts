@@ -1,9 +1,10 @@
+// models/payment.model.ts
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../database';
+import sequelize from '../database'; // Certifique-se de que este caminho está correto
 
-export class Payment extends Model {
+class Payment extends Model {
   public id!: number;
-  public jobId!: number;
+  public jobId!: number; // Referência ao Job
   public paymentValue!: number;
   public operationDate!: Date;
 }

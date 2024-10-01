@@ -1,3 +1,4 @@
+// routes/deposit.routes.ts
 import { Router } from 'express';
 import { createDeposit, findAllDeposits, findDepositById, updateDeposit, deleteDeposit } from '../controllers/deposit.controller';
 

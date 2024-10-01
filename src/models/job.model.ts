@@ -1,5 +1,7 @@
+// models/job.model.ts
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database'; // Certifique-se de que este caminho está correto
+import Payment from './payment.model'; // Importar o modelo de Payment
 
 class Job extends Model {
   public id!: number;
@@ -9,6 +11,7 @@ class Job extends Model {
   public paid!: boolean;
 }
 
+// Inicializando o modelo Job
 Job.init({
   id: {
     type: DataTypes.INTEGER,
@@ -38,5 +41,9 @@ Job.init({
   tableName: 'jobs',
   timestamps: false,
 });
+
+// Definindo o relacionamento com Payment
+Job.hasMany(Payment, { foreignKey: 'jobId' });
+Payment.belongsTo(Job, { foreignKey: 'jobId' });
 
 export default Job;
