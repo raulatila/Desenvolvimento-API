@@ -5,9 +5,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME || 'meu_banco',
+  process.env.DB_NAME || 'banco',
   process.env.DB_USER || 'root',
-  process.env.DB_PASS || '12012004',
+  process.env.DB_PASS || 'senha',
   {
     host: process.env.DB_HOST || 'localhost',
     dialect: 'mysql',
